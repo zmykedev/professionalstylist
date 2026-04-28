@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    @apply font-body text-charcoal bg-cream leading-[1.7] overflow-x-hidden;
+  }
+
+  img {
+    @apply max-w-full h-auto block;
+  }
+
+  a {
+    @apply no-underline text-inherit;
+  }
+}
+
+@layer utilities {
+  /* Remotion-style crisp ease-out: cubic-bezier(0.16, 1, 0.3, 1) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.93) translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Gallery nth-child grid rules — not expressible in pure Tailwind utilities */
+@media (min-width: 900px) {
+  .gallery-grid .gallery-item:nth-child(1) {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+  .gallery-grid .gallery-item:nth-child(5) {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+}
